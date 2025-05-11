@@ -1,4 +1,4 @@
-function Pendulum(angle1, angle2, length1, length2, g) {
+function Pendulum(angle1, angle2, length1, length2) {
   this.x0 = null; // Will be set later, needs context of canvas width
   this.y0 = null; // Will be set later, needs context of canvas height
   this.angle1 = angle1;
@@ -11,7 +11,6 @@ function Pendulum(angle1, angle2, length1, length2, g) {
   this.m2 = 1;
   this.length1 = length1;
   this.length2 = length2;
-  this.g = g;
 }
 
 Pendulum.prototype.setCanvasDimensions = function(width, height) {
@@ -20,14 +19,15 @@ Pendulum.prototype.setCanvasDimensions = function(width, height) {
 };
 
 Pendulum.prototype.update = function() {
+  const g = 10; // Assuming gravity constant
 
   const sin = Math.sin;
   const cos = Math.cos;
 
   if (frameCount % 1000 < 500) {
-    g = 1;
+    g = 10;
   } else {
-    g = -1;
+    g = -10;
   }
   console.log(g);
 
