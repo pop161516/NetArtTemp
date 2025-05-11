@@ -164,7 +164,6 @@ function draw() {
   requestAnimationFrame(draw);
   ctx.fillStyle = '#000000'; 
   ctx.fillRect(0, 0, width, height);
-  ctx.fillStyle = '#FFFFFF';
 
 
   for (let i = 0; i < num; i++) {
