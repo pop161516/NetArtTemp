@@ -11,6 +11,7 @@ function Pendulum(angle1, angle2, length1, length2) {
   this.m2 = 1;
   this.length1 = length1;
   this.length2 = length2;
+  this.bobRadius = 10;
 }
 
 Pendulum.prototype.setCanvasDimensions = function(width, height) {
@@ -101,6 +102,6 @@ ctx.fillStyle = rgb(255, ${yellowComponent}, 0);
 
 // Draw the second bob
 ctx.beginPath();
-ctx.arc(this.x2, this.y2, 10, 0, 2 * Math.PI);
+ctx.arc(this.x2, this.y2, this.bobRadius, 0, 2 * Math.PI);
 ctx.fill();
 };

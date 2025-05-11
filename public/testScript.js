@@ -150,6 +150,8 @@ let num = 10;
 let frameCount = 0;
 
 
+
+
 function setup() {
   for (let i = 0; i < num; i++) {
     let angle1 = Math.PI / 4 + i * 0.01;
