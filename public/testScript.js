@@ -160,18 +160,18 @@ function setup() {
 
 function draw() {
   requestAnimationFrame(draw);
-  ctx.fillStyle = 'rgb(220, 220, 220)'; // Equivalent to background(220)
+  ctx.fillStyle = '#FFFFFF)'; // Equivalent to background(220)
   ctx.fillRect(0, 0, width, height);
 
-  if (frameCount % 1000 < 500) {
-    g = 1;
-  } else {
-    g = -1;
-  }
-  console.log(g);
+//   if (frameCount % 1000 < 500) {
+//     g = 1;
+//   } else {
+//     g = -1;
+//   }
+//   console.log(g);
 
   for (let i = 0; i < num; i++) {
-    pendulums[i].currentG = g; // Update gravity for each pendulum
+    // pendulums[i].currentG = g; // Update gravity for each pendulum
     pendulums[i].update();
     pendulums[i].display(ctx);
   }
