@@ -11,7 +11,6 @@ function Pendulum(angle1, angle2, length1, length2) {
   this.m2 = 1;
   this.length1 = length1;
   this.length2 = length2;
-  this.bobRadius = 10;
 }
 
 Pendulum.prototype.setCanvasDimensions = function(width, height) {
@@ -67,6 +66,7 @@ Pendulum.prototype.update = function() {
   this.angleV1 *= 0.9999;
   this.angleV2 *= 0.9999;
 
+
 };
 
 Pendulum.prototype.display = function(ctx) {
@@ -80,28 +80,7 @@ Pendulum.prototype.display = function(ctx) {
   // ctx.lineTo(this.x2, this.y2);
   // ctx.stroke();
 
-  // ctx.beginPath();
-  // ctx.arc(this.x2, this.y2, 10, 0, 2 * Math.PI);
-  // ctx.fill();
-
-  // Calculate the linear velocity of the second bob
-const v1x = this.angleV1 * this.length1 * Math.cos(this.angle1);
-const v1y = -this.angleV1 * this.length1 * Math.sin(this.angle1);
-const v2x = v1x + this.angleV2 * this.length2 * Math.cos(this.angle2);
-const v2y = v1y - this.angleV2 * this.length2 * Math.sin(this.angle2);
-const velocitySquared = v2x * v2x + v2y * v2y;
-const velocity = Math.sqrt(velocitySquared);
-
-// Map velocity to a yellow color component (0-255)
-// You might need to adjust the scaling factor to get the desired range
-const maxVelocity = 50; // Adjust this based on the typical velocity range
-let yellowComponent = Math.min(255, Math.max(0, Math.round((velocity / maxVelocity) * 255)));
-
-// Set the fill color (red and green are full, blue is zero)
-ctx.fillStyle = rgb(255, ${yellowComponent}, 0);
-
-// Draw the second bob
-ctx.beginPath();
-ctx.arc(this.x2, this.y2, this.bobRadius, 0, 2 * Math.PI);
-ctx.fill();
+  ctx.beginPath();
+  ctx.arc(this.x2, this.y2, 10, 0, 2 * Math.PI);
+  ctx.fill();
 };
