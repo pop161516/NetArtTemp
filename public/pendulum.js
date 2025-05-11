@@ -19,8 +19,8 @@ Pendulum.prototype.setCanvasDimensions = function(width, height) {
 };
 
 Pendulum.prototype.update = function() {
-  var g = 1; // Assuming gravity constant
 
+  const g = this.currentG;
   const sin = Math.sin;
   const cos = Math.cos;
 
