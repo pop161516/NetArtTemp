@@ -33,5 +33,5 @@ introElement.addEventListener("click", disappear);
 
   function disappear() {
     introElement.style.display = "none";
-    console.log(`hello`)
+    console.log(`intro element closed :)`)
 }
