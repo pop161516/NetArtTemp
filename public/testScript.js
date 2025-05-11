@@ -196,7 +196,6 @@ if (typeof DeviceOrientationEvent.requestPermission === 'function') {
 
 
 function handlePenOrientation(event) {
-    console.log('Orientation event received:', event.beta, event.gamma);
   const beta = event.beta ? event.beta : 0; // Angle around the device's x-axis (-180 to 180 degrees)
   const gamma = event.gamma ? event.gamma : 0; // Angle around the device's y-axis (-90 to 90 degrees)
 
@@ -219,7 +218,8 @@ function handlePenOrientation(event) {
   // Optional: Clamp the value of g to a reasonable range
   g = Math.max(-2, Math.min(2, g));
 
-  console.log('g:', g, 'beta:', beta, 'gamma:', gamma);
+  console.log('g:', g, 'currentG:', currentG, 'beta:', beta, 'gamma:', gamma);
+
 }
 
 function map(value, start1, stop1, start2, stop2) {
