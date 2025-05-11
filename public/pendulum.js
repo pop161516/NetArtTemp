@@ -104,5 +104,3 @@ ctx.beginPath();
 ctx.arc(this.x2, this.y2, 10, 0, 2 * Math.PI);
 ctx.fill();
 };
-
-};
