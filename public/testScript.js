@@ -71,8 +71,8 @@ const ctx = canvas.getContext('2d');
   let angleA2 = 0;
 
   function setup() {
-    canvas.width = 400;
-    canvas.height = 400;
+    canvas.width = innerWidth;
+    canvas.height = innerHeight;
     x0 = canvas.width / 2;
     y0 = canvas.height / 2;
 
@@ -81,8 +81,6 @@ const ctx = canvas.getContext('2d');
   }
 
   function draw() {
-    ctx.fillStyle = '#ddd'; // Equivalent of background(220)
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     x1 = x0 + length1 * Math.sin(angle1);
     y1 = y0 + length1 * Math.cos(angle1);
