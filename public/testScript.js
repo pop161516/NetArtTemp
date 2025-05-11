@@ -147,6 +147,8 @@ canvas.height = height;
 let g = 1;
 let pendulums = [];
 let num = 10;
+let frameCount = 0;
+
 
 function setup() {
   for (let i = 0; i < num; i++) {
@@ -173,15 +175,15 @@ function draw() {
   console.log(g);
 
   for (let i = 0; i < num; i++) {
-    // pendulums[i].currentG = g; // Update gravity for each pendulum
+    pendulums[i].currentG = g; 
     pendulums[i].update();
     pendulums[i].display(ctx);
+    
   }
 
   frameCount++;
 }
 
-let frameCount = 0;
 setup();
 draw();
 
