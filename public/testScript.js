@@ -144,6 +144,7 @@ let height = window.innerHeight;
 canvas.width = width;
 canvas.height = height;
 
+let g = 1;
 let pendulums = [];
 let num = 10;
 
@@ -151,7 +152,7 @@ function setup() {
   for (let i = 0; i < num; i++) {
     let angle1 = Math.PI / 4 + i * 0.01;
     let angle2 = Math.PI;
-    pendulums[i] = new Pendulum(angle1, angle2, 100, 100);
+    pendulums[i] = new Pendulum(angle1, angle2, 100, 100, beta*alpha*gamma);
     pendulums[i].setCanvasDimensions(width, height);
     pendulums[i].currentG = g; // Initialize gravity for each pendulum
   }
