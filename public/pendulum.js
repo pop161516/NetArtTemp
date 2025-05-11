@@ -67,8 +67,8 @@ Pendulum.prototype.update = function() {
   this.angleV2 *= 0.9999;
 
     const maxVelocity = 5;
-    this.angleV1 = constrain(this.angleV1, -maxVelocity, maxVelocity)
-    this.angleV2 = constrain(this.angleV2, -maxVelocity, maxVelocity)
+    this.angleV1 = constrain(){this.angleV1, -maxVelocity, maxVelocity}
+    this.angleV2 = constrain(){this.angleV2, -maxVelocity, maxVelocity}
 };
 
 Pendulum.prototype.display = function(ctx) {
