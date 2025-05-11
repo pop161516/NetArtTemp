@@ -63,8 +63,8 @@ Pendulum.prototype.update = function() {
   this.angle1 += this.angleV1;
   this.angle2 += this.angleV2;
 
-  this.angleV1 *= 0.9999;
-  this.angleV2 *= 0.9999;
+  this.angleV1 *= 0.999;
+  this.angleV2 *= 0.999;
 
 
 };
