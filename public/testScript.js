@@ -32,7 +32,6 @@ const introElement = document.getElementById('interactiveElement');
       introElement.style.transform = `translate(-50%, -50%) rotateX(${alpha + 90}deg) rotateZ(${beta - 90}deg) rotateY(${gamma}deg)`;
     }
   }
-
 //--------------------------------------------------//
 //killing intro element
 introElement.addEventListener("click", disappear);
@@ -149,6 +148,10 @@ let pendulums = [];
 let num = 10;
 let frameCount = 0;
 
+// Variables to store gyroscope data
+let alpha = 0;
+let beta = 0;
+let gamma = 0;
 
 function setup() {
   for (let i = 0; i < num; i++) {
@@ -158,11 +161,27 @@ function setup() {
     pendulums[i].setCanvasDimensions(width, height);
     pendulums[i].currentG = g; // Initialize gravity for each pendulum
   }
-  // Add the event listener here, inside the setup function
-  canvas.addEventListener('click', () => {
-    g = -g; // Toggle the value of g
-    console.log("Gravity is now: " + g); // For debugging
-  });
+
+  if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+    DeviceOrientationEvent.requestPermission().then(permissionState => {
+      if (permissionState === 'granted') {
+        window.addEventListener('deviceorientation', handlePenOrientation);
+      } else {
+        console.warn('Permission denied for device orientation.');
+        Fallback: Use mouse position
+        canvas.addEventListener('mousemove', handleMouseMove);
+      }
+    }).catch(error => {
+      console.error('Error requesting device orientation permission:', error);
+      Fallback: Use mouse position
+      canvas.addEventListener('mousemove', handleMouseMove);
+    });
+  } else {
+    // For older devices, just add the listener
+    window.addEventListener('deviceorientation', handlePenOrientation);
+    Fallback:  Add mousemove event listener as well
+    canvas.addEventListener('mousemove', handleMouseMove);
+  }
 }
 
 function draw() {
@@ -180,5 +199,21 @@ function draw() {
 
   frameCount++;
 }
+
+function handlePenOrientation(event) {
+  // Use beta (tilt forward/backward) to influence gravity
+  beta = event.beta;
+
+  // Map beta to a gravity value.  Adjust these constants!
+  g = map(beta, -90, 90, -2, 2);  // Map beta (-90 to +90) to g (-2 to +2)
+
+  // Log the gravity value
+  console.log("Gravity: " + g.toFixed(2));
+}
+
+function map(value, low1, high1, low2, high2) {
+  return low2 + (high2 - low2) * (value - low1) / (high1 - low1);
+}
+
 setup();
 draw();
