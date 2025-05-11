@@ -168,19 +168,19 @@ function setup() {
         window.addEventListener('deviceorientation', handlePenOrientation);
       } else {
         console.warn('Permission denied for device orientation.');
-        Fallback: Use mouse position
-        canvas.addEventListener('mousemove', handleMouseMove);
+        // Fallback: Use mouse position
+        // canvas.addEventListener('mousemove', handleMouseMove);
       }
     }).catch(error => {
       console.error('Error requesting device orientation permission:', error);
-      Fallback: Use mouse position
-      canvas.addEventListener('mousemove', handleMouseMove);
+      // Fallback: Use mouse position
+      // canvas.addEventListener('mousemove', handleMouseMove);
     });
   } else {
     // For older devices, just add the listener
     window.addEventListener('deviceorientation', handlePenOrientation);
-    Fallback:  Add mousemove event listener as well
-    canvas.addEventListener('mousemove', handleMouseMove);
+    // Fallback:  Add mousemove event listener as well
+    // canvas.addEventListener('mousemove', handleMouseMove);
   }
 }
 
