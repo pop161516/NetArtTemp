@@ -16,13 +16,21 @@ if (window.DeviceOrientationEvent) {
     console.log("Device Orientation API is not supported on this device.");
   }
 
+const introElement = document.getElementById('interactiveElement');
+
+
   function handleOrientation(event) {
     const alpha = event.alpha;
     const beta = event.beta;
     const gamma = event.gamma;
 
-    const myElement = document.getElementById('interactiveElement');
-    if (myElement) {
-      myElement.style.transform = `translate(-50%, -50%) rotateX(${alpha + 90}deg) rotateZ(${beta - 90}deg) rotateY(${gamma}deg)`;
+    if (introElement) {
+      introElement.style.transform = `translate(-50%, -50%) rotateX(${alpha + 90}deg) rotateZ(${beta - 90}deg) rotateY(${gamma}deg)`;
     }
   }
+
+introElement.addEventListener("click", disappear);
+
+  function disappear() {
+    introElement.style.display = "none";
+}
