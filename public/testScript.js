@@ -139,6 +139,8 @@ const ctx = canvas.getContext('2d');
 
 //-----//
 //sketch2
+const canvas = document.getElementById('pendulumCanvas');
+const ctx = canvas.getContext('2d');
 let width = window.innerWidth;
 let height = window.innerHeight;
 canvas.width = width;
