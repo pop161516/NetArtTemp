@@ -160,8 +160,10 @@ function setup() {
 
 function draw() {
   requestAnimationFrame(draw);
-  ctx.fillStyle = '#FFFFFF)'; // Equivalent to background(220)
+  ctx.fillStyle = '#FFFFFF)'; 
   ctx.fillRect(0, 0, width, height);
+  ctx.fillStyle = '#000000';
+
 
 //   if (frameCount % 1000 < 500) {
 //     g = 1;
