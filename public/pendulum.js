@@ -60,7 +60,7 @@ Pendulum.prototype.update = function() {
   this.angleV1 += this.angleA1;
   this.angleV2 += this.angleA2;
 
-  const maxAngularVelocity = 8; // Adjust this value as needed
+  const maxAngularVelocity = 5; // Adjust this value as needed
   this.angleV1 = Math.max(-maxAngularVelocity, Math.min(this.angleV1, maxAngularVelocity));
   this.angleV2 = Math.max(-maxAngularVelocity, Math.min(this.angleV2, maxAngularVelocity));
 
