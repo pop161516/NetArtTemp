@@ -1,3 +1,6 @@
+
+//------------------------------------------------------------------------//
+//Checking gyro API works
 if (window.DeviceOrientationEvent) {
     if (typeof DeviceOrientationEvent.requestPermission === 'function') {
       DeviceOrientationEvent.requestPermission()
@@ -16,8 +19,9 @@ if (window.DeviceOrientationEvent) {
     console.log("Device Orientation API is not supported on this device.");
   }
 
+//--------------------------------------------------------------------------------------------------------------------------------//
+//Gyro for intro element
 const introElement = document.getElementById('interactiveElement');
-
 
   function handleOrientation(event) {
     const alpha = event.alpha;
@@ -29,9 +33,17 @@ const introElement = document.getElementById('interactiveElement');
     }
   }
 
+//--------------------------------------------------//
+//killing intro element
 introElement.addEventListener("click", disappear);
 
   function disappear() {
     introElement.style.display = "none";
     console.log(`intro element closed :)`)
 }
+
+//----------------------------------------------------//
+//access canvas
+const canvas = document.getElementById('cnv_element');
+const ctx = canvas.getContext('2d');
+
