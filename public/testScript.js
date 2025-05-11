@@ -144,7 +144,7 @@ let height = window.innerHeight;
 canvas.width = width;
 canvas.height = height;
 
-let g = 1;
+let g = -10;
 let pendulums = [];
 let num = 10;
 
@@ -165,12 +165,12 @@ function draw() {
   ctx.fillStyle = '#000000';
 
 
-  if (frameCount % 1000 < 500) {
-    g = 1;
-  } else {
-    g = -1;
-  }
-  console.log(g);
+  // if (frameCount % 1000 < 500) {
+  //   g = 1;
+  // } else {
+  //   g = -1;
+  // }
+  // console.log(g);
 
   for (let i = 0; i < num; i++) {
     // pendulums[i].currentG = g; // Update gravity for each pendulum
