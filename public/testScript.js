@@ -160,7 +160,7 @@ function setup() {
 
 function draw() {
   requestAnimationFrame(draw);
-  ctx.fillStyle = '#FFFFFF)'; 
+  ctx.fillStyle = '#FFFFFF'; 
   ctx.fillRect(0, 0, width, height);
   ctx.fillStyle = '#000000';
 
