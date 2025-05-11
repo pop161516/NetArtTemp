@@ -68,15 +68,15 @@ Pendulum.prototype.update = function() {
 };
 
 Pendulum.prototype.display = function(ctx) {
-  ctx.beginPath();
-  ctx.moveTo(this.x0, this.y0);
-  ctx.lineTo(this.x1, this.y1);
-  ctx.stroke();
+  // ctx.beginPath();
+  // ctx.moveTo(this.x0, this.y0);
+  // ctx.lineTo(this.x1, this.y1);
+  // ctx.stroke();
 
-  ctx.beginPath();
-  ctx.moveTo(this.x1, this.y1);
-  ctx.lineTo(this.x2, this.y2);
-  ctx.stroke();
+  // ctx.beginPath();
+  // ctx.moveTo(this.x1, this.y1);
+  // ctx.lineTo(this.x2, this.y2);
+  // ctx.stroke();
 
   ctx.beginPath();
   ctx.arc(this.x2, this.y2, 10, 0, 2 * Math.PI);
