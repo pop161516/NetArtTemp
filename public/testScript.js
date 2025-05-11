@@ -158,6 +158,11 @@ function setup() {
     pendulums[i].setCanvasDimensions(width, height);
     pendulums[i].currentG = g; // Initialize gravity for each pendulum
   }
+  // Add the event listener here, inside the setup function
+  canvas.addEventListener('click', () => {
+    g = -g; // Toggle the value of g
+    console.log("Gravity is now: " + g); // For debugging
+  });
 }
 
 function draw() {
