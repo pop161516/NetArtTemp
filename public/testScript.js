@@ -196,6 +196,7 @@ if (typeof DeviceOrientationEvent.requestPermission === 'function') {
 
 
 function handlePenOrientation(event) {
+    console.log('Orientation event received:', event.beta, event.gamma);
   const beta = event.beta ? event.beta : 0; // Angle around the device's x-axis (-180 to 180 degrees)
   const gamma = event.gamma ? event.gamma : 0; // Angle around the device's y-axis (-90 to 90 degrees)
 
