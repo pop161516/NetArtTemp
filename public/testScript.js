@@ -157,7 +157,7 @@ function setup() {
   for (let i = 0; i < num; i++) {
     let angle1 = Math.PI / 4 + i * 0.01;
     let angle2 = Math.PI;
-    pendulums[i] = new Pendulum(angle1, angle2, 100, 100);
+    pendulums[i] = new Pendulum(angle1, angle2, 150, 150);
     pendulums[i].setCanvasDimensions(width, height);
     pendulums[i].currentG = g; // Initialize gravity for each pendulum
   }
