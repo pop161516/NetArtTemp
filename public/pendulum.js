@@ -19,7 +19,7 @@ Pendulum.prototype.setCanvasDimensions = function(width, height) {
 };
 
 Pendulum.prototype.update = function() {
-  const g = 1; // Assuming gravity constant
+  var g = 1; // Assuming gravity constant
 
   const sin = Math.sin;
   const cos = Math.cos;
@@ -65,6 +65,10 @@ Pendulum.prototype.update = function() {
 
   this.angleV1 *= 0.9999;
   this.angleV2 *= 0.9999;
+
+    var maxVelocity = 5;
+    this.angleV1 = constrain(this.angleV1, -maxVelocity, maxVelocity)
+    this.angleV2 = constrain(this.angleV2, -maxVelocity, maxVelocity)
 };
 
 Pendulum.prototype.display = function(ctx) {
