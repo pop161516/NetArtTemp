@@ -183,7 +183,7 @@ if (typeof DeviceOrientationEvent.requestPermission === 'function') {
   DeviceOrientationEvent.requestPermission()
     .then(permissionState => {
       if (permissionState === 'granted') {
-        window.addEventListener('deviceorientation', handleOrientation);
+        window.addEventListener('deviceorientation', handlePenOrientation);
       } else {
         console.warn('Device orientation permission not granted.');
       }
@@ -191,7 +191,7 @@ if (typeof DeviceOrientationEvent.requestPermission === 'function') {
     .catch(console.error);
 } else {
   // For non-iOS 13+ devices
-  window.addEventListener('deviceorientation', handleOrientation);
+  window.addEventListener('deviceorientation', handlePenOrientation);
 }
 
 
