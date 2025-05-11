@@ -81,8 +81,6 @@ const ctx = canvas.getContext('2d');
   }
 
   function draw() {
-    ctx.fillStyle = '#FFFFFF'; // Equivalent of background(220)
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     x1 = x0 + length1 * Math.sin(angle1);
     y1 = y0 + length1 * Math.cos(angle1);
@@ -126,6 +124,9 @@ const ctx = canvas.getContext('2d');
     ctx.beginPath();
     ctx.arc(x2, y2, 10, 0, 2 * Math.PI); // Equivalent of ellipse(x2, y2, 10, 10)
     ctx.fill();
+
+    ctx.fillStyle = '#FFFFFF'; // Equivalent of background(220)
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     requestAnimationFrame(draw); // Continue the animation loop
   }
