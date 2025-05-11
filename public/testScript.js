@@ -26,3 +26,11 @@ if (window.DeviceOrientationEvent) {
       myElement.style.transform = `translate(-50%, -50%) rotateZ(${alpha}deg) rotateX(${beta}deg) rotateY(${gamma}deg)`;
     }
   }
+
+  const draw_frame = ms => {
+
+   const seconds = (ms / 1000)
+   console.log (seconds.toFixed (2))
+
+   requestAnimationFrame (draw_frame)
+}
