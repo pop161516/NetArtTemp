@@ -24,6 +24,13 @@ Pendulum.prototype.update = function() {
   const sin = Math.sin;
   const cos = Math.cos;
 
+  if (frameCount % 1000 < 500) {
+    g = 1;
+  } else {
+    g = -1;
+  }
+  console.log(g);
+
   this.x1 = this.x0 + this.length1 * sin(this.angle1);
   this.y1 = this.y0 + this.length1 * cos(this.angle1);
   this.x2 = this.x1 + this.length2 * sin(this.angle2);
