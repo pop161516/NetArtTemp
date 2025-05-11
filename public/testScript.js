@@ -81,6 +81,8 @@ const ctx = canvas.getContext('2d');
   }
 
   function draw() {
+    ctx.fillStyle = '#FFFFFF'; // Equivalent of background(220)
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     x1 = x0 + length1 * Math.sin(angle1);
     y1 = y0 + length1 * Math.cos(angle1);
