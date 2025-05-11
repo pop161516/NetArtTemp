@@ -19,17 +19,10 @@ Pendulum.prototype.setCanvasDimensions = function(width, height) {
 };
 
 Pendulum.prototype.update = function() {
-  const g = 10; // Assuming gravity constant
+  const g = 1; // Assuming gravity constant
 
   const sin = Math.sin;
   const cos = Math.cos;
-
-  if (frameCount % 1000 < 500) {
-    g = 10;
-  } else {
-    g = -10;
-  }
-  console.log(g);
 
   this.x1 = this.x0 + this.length1 * sin(this.angle1);
   this.y1 = this.y0 + this.length1 * cos(this.angle1);
