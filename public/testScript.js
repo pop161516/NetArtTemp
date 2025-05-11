@@ -166,9 +166,9 @@ function draw() {
 
 
   if (frameCount % 1000 < 500) {
-    g = 1;
+    g = 10;
   } else {
-    g = -1;
+    g = -10;
   }
   console.log(g);
 
