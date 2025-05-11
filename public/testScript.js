@@ -23,6 +23,6 @@ if (window.DeviceOrientationEvent) {
 
     const myElement = document.getElementById('interactiveElement');
     if (myElement) {
-      myElement.style.transform = `translate(-50%, -50%) rotateX(${alpha}deg) rotateZ(${beta}deg) rotateY(${gamma - 90}deg)`;
+      myElement.style.transform = `translate(-50%, -50%) rotateX(${alpha}deg) rotateZ(${beta-90}deg) rotateY(${gamma}deg)`;
     }
   }
