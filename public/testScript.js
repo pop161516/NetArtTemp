@@ -19,10 +19,10 @@ if (window.DeviceOrientationEvent) {
   function handleOrientation(event) {
     const alpha = event.alpha;
     const beta = event.beta;
-    const gamma = event.gamma;
+    const gamma = event.gamma - 90;
 
     const myElement = document.getElementById('interactiveElement');
     if (myElement) {
-      myElement.style.transform = `translate(-50%, -50%) rotateZ(${alpha}deg) rotateX(${beta}deg) rotateY(${gamma}deg)`;
+      myElement.style.transform = `translate(-50%, -50%) rotateX(${alpha}deg) rotateZ(${beta}deg) rotateY(${gamma}deg)`;
     }
   }
