@@ -66,7 +66,7 @@ Pendulum.prototype.update = function() {
   this.angleV1 *= 0.9999;
   this.angleV2 *= 0.9999;
 
-    var maxVelocity = 5;
+    const maxVelocity = 5;
     this.angleV1 = constrain(this.angleV1, -maxVelocity, maxVelocity)
     this.angleV2 = constrain(this.angleV2, -maxVelocity, maxVelocity)
 };
