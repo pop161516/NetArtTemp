@@ -144,7 +144,7 @@ let height = window.innerHeight;
 canvas.width = width;
 canvas.height = height;
 
-let g = -10;
+let g = 1;
 let pendulums = [];
 let num = 10;
 
