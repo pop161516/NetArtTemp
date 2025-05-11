@@ -152,8 +152,8 @@ let frameCount = 0;
 
 function setup() {
   for (let i = 0; i < num; i++) {
-    let angle1 = Math.PI / 4 + i * 0.01;
-    let angle2 = Math.PI;
+    let angle1 = Math.PI / 4 + i * 0.1;
+    let angle2 = Math.PI/2;
     pendulums[i] = new Pendulum(angle1, angle2, 100, 100);
     pendulums[i].setCanvasDimensions(width, height);
     pendulums[i].currentG = g; // Initialize gravity for each pendulum
@@ -177,64 +177,5 @@ function draw() {
   frameCount++;
 }
 
-
-// Request permission for device orientation events (for iOS 13+ in Safari)
-if (typeof DeviceOrientationEvent.requestPermission === 'function') {
-  DeviceOrientationEvent.requestPermission()
-    .then(permissionState => {
-      if (permissionState === 'granted') {
-        window.addEventListener('deviceorientation', handlePenOrientation);
-      } else {
-        console.warn('Device orientation permission not granted.');
-      }
-    })
-    .catch(console.error);
-} else {
-  // For non-iOS 13+ devices
-  window.addEventListener('deviceorientation', handlePenOrientation);
-}
-
-
-function handlePenOrientation(event) {
-    console.log('Orientation event received:', event.beta, event.gamma);
-  const beta = event.beta ? event.beta : 0; // Angle around the device's x-axis (-180 to 180 degrees)
-  const gamma = event.gamma ? event.gamma : 0; // Angle around the device's y-axis (-90 to 90 degrees)
-
-  // Map the beta or gamma values to control the g variable.
-  // You'll likely need to experiment with these mappings to get the desired effect.
-
-  // Example 1: Using the beta angle (tilting forward/backward)
-  // g = map(beta, -90, 90, -1, 1); // Map -90 to 90 degrees to a g range of -1 to 1
-
-  // Example 2: Using the gamma angle (tilting left/right)
-  g = map(gamma, -45, 45, -1, 1); // Map -45 to 45 degrees to a g range of -1 to 1
-
-  // Example 3: Combining angles (you'll need to get creative here!)
-  // g = map(beta + gamma, -135, 135, -1, 1);
-
-  // Optional: Add a sensitivity multiplier
-  const sensitivity = 0.01;
-  g *= sensitivity * 100; // Adjust the multiplier as needed
-
-  // Optional: Clamp the value of g to a reasonable range
-  g = Math.max(-2, Math.min(2, g));
-
-  console.log('g:', g, 'beta:', beta, 'gamma:', gamma);
-}
-
-function map(value, start1, stop1, start2, stop2) {
-  return start2 + (stop2 - start2) * ((value - start1) / (stop1 - start1));
-}
-
 setup();
 draw();
-
-window.addEventListener('resize', () => {
-  width = window.innerWidth;
-  height = window.innerHeight;
-  canvas.width = width;
-  canvas.height = height;
-  for (let i = 0; i < num; i++) {
-    pendulums[i].setCanvasDimensions(width, height);
-  }
-});

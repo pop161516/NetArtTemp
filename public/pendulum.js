@@ -23,6 +23,7 @@ Pendulum.prototype.update = function() {
 
   const sin = Math.sin;
   const cos = Math.cos;
+    const g = this.currentG; // Use the pendulum's current gravity
 
   this.x1 = this.x0 + this.length1 * sin(this.angle1);
   this.y1 = this.y0 + this.length1 * cos(this.angle1);
@@ -68,15 +69,6 @@ Pendulum.prototype.update = function() {
 };
 
 Pendulum.prototype.display = function(ctx) {
-  // ctx.beginPath();
-  // ctx.moveTo(this.x0, this.y0);
-  // ctx.lineTo(this.x1, this.y1);
-  // ctx.stroke();
-
-  // ctx.beginPath();
-  // ctx.moveTo(this.x1, this.y1);
-  // ctx.lineTo(this.x2, this.y2);
-  // ctx.stroke();
 
   ctx.beginPath();
   ctx.arc(this.x2, this.y2, 10, 0, 2 * Math.PI);
