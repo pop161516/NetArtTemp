@@ -1,7 +1,8 @@
 #interactiveElement {
     display: flexbox;
+    flex-direction: column;
+    align-content: center;
     width: 500px;
-    height: 500px;
     background-color: hotpink;
     position: absolute;
     top: 50%;
