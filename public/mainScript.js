@@ -16,9 +16,22 @@ if (window.DeviceOrientationEvent) {
     } else {
       window.addEventListener('deviceorientation', handlePopUpOrientation);
     }
+
+    canvas.addEventListener('pointerenter', () => {
+        oscillators.forEach(osc => {
+            osc.gainNode.gain.setValueAtTime(0.1, audioContext.currentTime); // Turn sound on
+        });
+    });
+
+    canvas.addEventListener('pointerleave', () => {
+        oscillators.forEach(osc => {
+             osc.gainNode.gain.setValueAtTime(0, audioContext.currentTime); // Turn sound off
+        });
+    });
+
   } else {
     console.log("Device Orientation API is not supported on this device.");
-  }
+  }  
 
 //---------------------------------------------------------------------------------------------------------------------------------//
 //Gyro for intro element
@@ -72,6 +85,14 @@ let alpha = 0;
 let beta = 0;
 let gamma = 0;
 
+// Web Audio API setup
+const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+const oscillators = []; // Array to store oscillators for each pendulum
+const masterGainNode = audioContext.createGain();  //Master gain
+masterGainNode.connect(audioContext.destination);
+masterGainNode.gain.value = 0.1; //Quieter sound
+
+
 //------------ set up ------------//
 function setup() {
   //making num pendulums
@@ -83,6 +104,18 @@ function setup() {
     pendulums[i] = new Pendulum(angle1, angle2, 150, 150);
     pendulums[i].setCanvasDimensions(width, height);
     pendulums[i].currentG = g;
+
+    // Create an oscillator for each pendulum
+    const oscillator = audioContext.createOscillator();
+    oscillator.type = 'sine';  // You can change the waveform (sine, square, sawtooth, triangle)
+    oscillator.frequency.setValueAtTime(440, audioContext.currentTime); // Initial frequency
+    const gainNode = audioContext.createGain();
+    gainNode.gain.setValueAtTime(0, audioContext.currentTime); // Start silent
+    oscillator.connect(gainNode);
+    gainNode.connect(masterGainNode); // Connect to the master gain
+    oscillator.start();
+    oscillators.push({ oscillator, gainNode }); // Store both
+  
   }
 
 //------- gyro compatibility -------//
@@ -114,10 +147,21 @@ function draw() {
     pendulums[i].currentG = g; 
     pendulums[i].update();
     pendulums[i].display(ctx);
+
+    // Control frequency based on pendulum's y position
+    const y = pendulums[i].y2; // Y position of the second bob
+    const minFrequency = 200;  // Minimum frequency (adjust as needed)
+    const maxFrequency = 1000; // Maximum frequency (adjust as needed)
+    const frequency = map(y, 0, height, maxFrequency, minFrequency); //Higher y = lower freq
+    oscillators[i].oscillator.frequency.setValueAtTime(frequency, audioContext.currentTime);
+  
   }
   frameCount++;
 }
 
+//------------- gyro -------------//
+//function called by gyro controles
+//maps beta(back adn forth) to the gravity 
 function handlePenOrientation(event) {
   beta = event.beta;
   g = map(beta, -90, 90, -2, 2);  

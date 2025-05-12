@@ -1,5 +1,7 @@
 //Code inspiered by https://www.youtube.com/watch?v=OJSzIaRRxG8 
 
+//---------- pendulum class ----------//
+//pendulum object
 function Pendulum(angle1, angle2, length1, length2) {
   this.x0 = null; 
   this.y0 = null; 
@@ -13,6 +15,8 @@ function Pendulum(angle1, angle2, length1, length2) {
   this.m2 = 1;
   this.length1 = length1;
   this.length2 = length2;
+  this.index = index; // Store the index
+  this.y2 = 0;
 }
 
 Pendulum.prototype.setCanvasDimensions = function(width, height) {
@@ -20,17 +24,35 @@ Pendulum.prototype.setCanvasDimensions = function(width, height) {
   this.y0 = height / 2;
 };
 
+//------------- update -------------//
 Pendulum.prototype.update = function() {
 
   const g = this.currentG;
   const sin = Math.sin;
   const cos = Math.cos;
 
+  /* 
+  xy01 are added as context for starting pos
+  length12 distances the point from the context
+  And '* sin/cos' translates the point around its
+  angle in the arc of the circle
+  */
+
   this.x1 = this.x0 + this.length1 * sin(this.angle1);
   this.y1 = this.y0 + this.length1 * cos(this.angle1);
   this.x2 = this.x1 + this.length2 * sin(this.angle2);
   this.y2 = this.y1 + this.length2 * cos(this.angle2);
 
+  /*
+  This system uses Lagrangian mechanics to calculte
+  the energy of differant components in the 
+  pendulum rather than the forces being applyed (A Newtonian approach)
+  Removing the need to calculate ALL forces (such 
+  as the tention in the rods) and allowing us to
+  focuss solely on the movement of the ball
+  */
+
+  //formular
   this.angleA1 =
     (-g * (2 * this.m1 + this.m2) * sin(this.angle1) -
       this.m2 * g * sin(this.angle1 - 2 * this.angle2) -
@@ -76,6 +98,7 @@ Pendulum.prototype.update = function() {
 
 };
 
+//------------ display ------------//
 Pendulum.prototype.display = function(ctx) {
   // ctx.beginPath();
   // ctx.moveTo(this.x0, this.y0);
@@ -87,7 +110,7 @@ Pendulum.prototype.display = function(ctx) {
   // ctx.lineTo(this.x2, this.y2);
   // ctx.stroke();
 
-  // Calculate the linear velocity of the second bob
+  // velocity of ball
   const v1x = this.angleV1 * this.length1 * Math.cos(this.angle1);
   const v1y = -this.angleV1 * this.length1 * Math.sin(this.angle1);
   const v2x = v1x + this.angleV2 * this.length2 * Math.cos(this.angle2);
@@ -95,12 +118,9 @@ Pendulum.prototype.display = function(ctx) {
   const velocitySquared = v2x * v2x + v2y * v2y;
   const velocity = Math.sqrt(velocitySquared);
 
-  // Map velocity to a yellow color component (0-255)
-  // You might need to adjust the scaling factor to get the desired range
-  const maxVelocity = 20; // Adjust this based on the typical velocity range
+  // Map velocity color
+  const maxVelocity = 20; 
   let colourComponent = Math.min(255, Math.max(0, Math.round((velocity / maxVelocity) * 255)));
-
-  // Set the fill color (red and green are full, blue is zero)
   ctx.fillStyle = `rgb(${colourComponent}, ${colourComponent}, 0)`;
 
   ctx.beginPath();
