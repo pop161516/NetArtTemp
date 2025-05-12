@@ -130,7 +130,8 @@ function setup() {
         oscillators.forEach(osc => {
           osc.gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
         });
-    }, { passive: true }); 
+    } 
+  }, { passive: true }); 
 
   canvas.addEventListener('pointerleave', () => {
     oscillators.forEach(osc => {
