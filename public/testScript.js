@@ -29,12 +29,12 @@ if (window.DeviceOrientationEvent) {
 const introElement = document.getElementById('interactiveElement');
 
   function handlePopUpOrientation(event) {
-    const gyroX = event.gyroX;
-    const gyroY = event.gyroY;
-    const gyroZ = event.gyroZ;
+    const alpha = event.alpha;
+    const beta = event.beta;
+    const gamma = event.gamma;
 
     if (introElement) {
-      introElement.style.transform = `translate(-50%, -50%) rotateX(${gyroX + 90}deg) rotateZ(${gyroY - 90}deg) rotateY(${gyroZ}deg)`;
+      introElement.style.transform = `translate(-50%, -50%) rotateX(${alpha + 90}deg) rotateZ(${beta - 90}deg) rotateY(${gamma}deg)`;
     }
   }
 //--------------------------------------------------//
@@ -64,10 +64,10 @@ let pendulums = [];
 let num = 10;
 let frameCount = 0;
 
-// Gyroscope data
-let gyroX = 0;
-let gyroY = 0;
-let gyroZ = 0;
+// gyroscope data
+let alpha = 0;
+let beta = 0;
+let gamma = 0;
 
 function setup() {
   for (let i = 0; i < num; i++) {
