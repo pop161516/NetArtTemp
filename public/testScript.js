@@ -30,12 +30,15 @@ if (window.DeviceOrientationEvent) {
 const introElement = document.getElementById('interactiveElement');
 
   function handlePopUpOrientation(event) {
-    const alpha = event.alpha;
-    const beta = event.beta;
+    //left right
+    const alpha = event.alpha; 
+    //forward backward
+    const beta = event.beta; 
+    //
     const gamma = event.gamma;
 
     if (introElement) {
-      introElement.style.transform = `translate(-50%, -50%) rotateX(${alpha + 90}deg) rotateZ(${beta - 90}deg) rotateY(${gamma}deg)`;
+      introElement.style.transform = `translate(-50%, -50%) rotateX(${alpha + 90}deg) rotateZ(${beta + 90}deg) rotateY(${gamma}deg)`;
     }
   }
 //--------------------------------------------------//
@@ -46,7 +49,6 @@ introElement.addEventListener("click", disappear);
     introElement.style.display = "none";
     console.log(`intro element closed :)`)
 }
-
 //----------------------------------------------------//
 //access canvas
 const canvas = document.getElementById('cnv_element');
@@ -117,7 +119,6 @@ function draw() {
 }
 
 function handlePenOrientation(event) {
-  // Use beta (tilt forward/backward) to influence gravity
   beta = event.beta;
 
   // Map beta to a gravity value.  Adjust these constants!
