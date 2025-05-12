@@ -118,12 +118,11 @@ function draw() {
 
 function handlePenOrientation(event) {
   // Use beta (tilt forward/backward) to influence gravity
-  alpha = event.alpha;
+  beta = event.beta;
 
   // Map beta to a gravity value.  Adjust these constants!
-  g = map(alpha, -90, 90, -2, 2);  // Map beta (-90 to +90) to g (-2 to +2)
+  g = map(beta, -90, 90, -2, 2);  // Map beta (-90 to +90) to g (-2 to +2)
 
-  // Log the gravity value
   console.log("Gravity: " + g.toFixed(2));
 }
 
