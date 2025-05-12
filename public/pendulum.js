@@ -101,7 +101,7 @@ Pendulum.prototype.display = function(ctx) {
   let colourComponent = Math.min(255, Math.max(0, Math.round((velocity / maxVelocity) * 255)));
 
   // Set the fill color (red and green are full, blue is zero)
-  ctx.fillStyle = `rgb(${colourComponent}, ${colourComponent}, 0)`;
+  ctx.fillStyle = `rgb(${colourComponent}, ${colourComponent}, ${colourComponent})`;
 
   ctx.beginPath();
   ctx.arc(this.x2, this.y2, 10, 0, 2 * Math.PI);
