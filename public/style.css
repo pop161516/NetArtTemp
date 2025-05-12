@@ -12,11 +12,16 @@
     justify-content: center;
   }
 
-  p {
+  #text {
    padding: 30px;
     color: black;
     font-size: 1.5rem;
     display: block;
+  }
+
+  #small-text{
+    color: black;
+    font-size: 0.8rem;
   }
 
   img {
