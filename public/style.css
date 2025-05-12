@@ -20,8 +20,11 @@
   }
 
   #small-text{
+    padding: 5px;
     color: black;
     font-size: 0.8rem;
+    display: block;
+
   }
 
   img {
