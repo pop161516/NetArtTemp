@@ -117,6 +117,28 @@ function setup() {
     oscillator.start();
     oscillators.push({ oscillator, gainNode }); // Store both
   
+     // *** ADD THIS SECTION ***
+  canvas.addEventListener('pointerenter', () => {
+    if (audioContext.state === 'suspended') {
+      audioContext.resume().then(() => {
+        console.log('AudioContext resumed'); // For debugging
+        // Now that the context is resumed, turn on the sound
+        oscillators.forEach(osc => {
+          osc.gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+        });
+      });
+    } else {
+        oscillators.forEach(osc => {
+          osc.gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+        });
+    }
+  });
+
+  canvas.addEventListener('pointerleave', () => {
+    oscillators.forEach(osc => {
+      osc.gainNode.gain.setValueAtTime(0, audioContext.currentTime);
+    });
+  });
   }
 
 //------- gyro compatibility -------//
