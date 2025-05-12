@@ -62,7 +62,7 @@ canvas.height = height;
 
 let g = 1;
 let pendulums = [];
-let num = 50;
+let num = 20;
 let frameCount = 0;
 
 // gyroscope data
