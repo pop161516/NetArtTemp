@@ -120,15 +120,11 @@ function draw() {
 
 function handlePenOrientation(event) {
   beta = event.beta;
-
-  // Map beta to a gravity value.  Adjust these constants!
-  g = map(beta, -90, 90, -2, 2);  // Map beta (-90 to +90) to g (-2 to +2)
-
-  console.log("Gravity: " + g.toFixed(2));
+  g = map(beta, -90, 90, -2, 2);  
 }
 
-function map(value, low1, high1, low2, high2) {
-  return low2 + (high2 - low2) * (value - low1) / (high1 - low1);
+function map(value, a1, a2, g1, g2) {
+  return g1 + (g2 - g1) * (value - a1) / (a2 - a1);
 }
 
 setup();
