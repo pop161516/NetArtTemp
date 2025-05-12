@@ -38,7 +38,7 @@ const introElement = document.getElementById('interactiveElement');
     const gamma = event.gamma;
 
     if (introElement) {
-      introElement.style.transform = `translate(-50%, -50%) rotateX(${gamma}deg) rotateZ(${beta - 90}deg) rotateY(${alpha + 90}deg)`;
+      introElement.style.transform = `translate(-50%, -50%) rotateY(${gamma}deg) rotateX(${beta - 90}deg) rotateZ(${alpha + 90}deg)`;
     }
   }
 //--------------------------------------------------//
