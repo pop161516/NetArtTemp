@@ -1,6 +1,7 @@
 
 //--------------------------------------------------------------------------------//
 //Checking gyro API works(for pop-up)
+//code sorced from Google Gemini AI
 if (window.DeviceOrientationEvent) {
     if (typeof DeviceOrientationEvent.requestPermission === 'function') {
       DeviceOrientationEvent.requestPermission()
@@ -69,59 +70,58 @@ let alpha = 0;
 let beta = 0;
 let gamma = 0;
 
+//------------ set up ------------//
 function setup() {
+  //making num pendulums
   for (let i = 0; i < num; i++) {
+    //starting position, offset a little for variation
     let angle1 = Math.PI / 4 + i * 0.05;
     let angle2 = Math.PI;
+    //instance each pendulum using a class
     pendulums[i] = new Pendulum(angle1, angle2, 150, 150);
     pendulums[i].setCanvasDimensions(width, height);
-    pendulums[i].currentG = g; // Initialize gravity for each pendulum
+    pendulums[i].currentG = g;
   }
 
+//------- gyro compatibility -------//
+//code sorced from Google Gemini AI
   if (typeof DeviceOrientationEvent.requestPermission === 'function') {
     DeviceOrientationEvent.requestPermission().then(permissionState => {
       if (permissionState === 'granted') {
         window.addEventListener('deviceorientation', handlePenOrientation);
       } else {
         console.warn('Permission denied for device orientation.');
-        // Fallback: Use mouse position
-        // canvas.addEventListener('mousemove', handleMouseMove);
-      }
-    }).catch(error => {
+        }
+    })
+    .catch(error => {
       console.error('Error requesting device orientation permission:', error);
-      // Fallback: Use mouse position
-      // canvas.addEventListener('mousemove', handleMouseMove);
     });
-  } else {
-    // For older devices, just add the listener
+    } else {
     window.addEventListener('deviceorientation', handlePenOrientation);
-    // Fallback:  Add mousemove event listener as well
-    // canvas.addEventListener('mousemove', handleMouseMove);
-  }
+    }
 }
 
+//------------- draw -------------//
 function draw() {
   requestAnimationFrame(draw);
   ctx.fillStyle = '#000000'; 
   ctx.fillRect(0, 0, width, height);
 
-
+//draw and update each pendulum using a class
   for (let i = 0; i < num; i++) {
     pendulums[i].currentG = g; 
     pendulums[i].update();
     pendulums[i].display(ctx);
-    
   }
-
   frameCount++;
 }
 
 function handlePenOrientation(event) {
   // Use beta (tilt forward/backward) to influence gravity
-  beta = event.beta;
+  alpha = event.alpha;
 
   // Map beta to a gravity value.  Adjust these constants!
-  g = map(beta, -90, 90, -2, 2);  // Map beta (-90 to +90) to g (-2 to +2)
+  g = map(alpha, -90, 90, -2, 2);  // Map beta (-90 to +90) to g (-2 to +2)
 
   // Log the gravity value
   console.log("Gravity: " + g.toFixed(2));
