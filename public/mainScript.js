@@ -1,4 +1,9 @@
 
+//----------------------------------------------------//
+//access canvas
+const canvas = document.getElementById('cnv_element');
+const ctx = canvas.getContext('2d');
+
 //--------------------------------------------------------------------------------//
 //Checking gyro API works(for pop-up)
 //code sorced from Google Gemini AI
@@ -62,10 +67,6 @@ introElement.addEventListener("click", disappear);
     introElement.style.display = "none";
     console.log(`intro element closed :)`)
 }
-//----------------------------------------------------//
-//access canvas
-const canvas = document.getElementById('cnv_element');
-const ctx = canvas.getContext('2d');
 
 //---------------------------------------------------------------------------------//
 //sketch, inspiered by https://www.youtube.com/watch?v=OJSzIaRRxG8 
