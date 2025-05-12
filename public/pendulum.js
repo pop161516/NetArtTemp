@@ -62,7 +62,7 @@ Pendulum.prototype.update = function() {
   this.angleV1 += this.angleA1;
   this.angleV2 += this.angleA2;
 
-  const maxAngularVelocity = 0.25; // Adjust this value as needed
+  const maxAngularVelocity = 0.26; // Adjust this value as needed
   this.angleV1 = Math.max(-maxAngularVelocity, Math.min(this.angleV1, maxAngularVelocity));
   this.angleV2 = Math.max(-maxAngularVelocity, Math.min(this.angleV2, maxAngularVelocity));
 
@@ -101,7 +101,7 @@ Pendulum.prototype.display = function(ctx) {
   let colourComponent = Math.min(255, Math.max(0, Math.round((velocity / maxVelocity) * 255)));
 
   // Set the fill color (red and green are full, blue is zero)
-  ctx.fillStyle = `rgb(${colourComponent}, 0, ${colourComponent})`;
+  ctx.fillStyle = `rgb(${colourComponent}, ${colourComponent}, 0)`;
 
   ctx.beginPath();
   ctx.arc(this.x2, this.y2, 10, 0, 2 * Math.PI);
