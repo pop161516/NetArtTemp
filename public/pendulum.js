@@ -15,8 +15,6 @@ function Pendulum(angle1, angle2, length1, length2) {
   this.m2 = 1;
   this.length1 = length1;
   this.length2 = length2;
-  this.index = index; // Store the index
-  this.y2 = 0;
 }
 
 Pendulum.prototype.setCanvasDimensions = function(width, height) {
