@@ -98,10 +98,10 @@ Pendulum.prototype.display = function(ctx) {
   // Map velocity to a yellow color component (0-255)
   // You might need to adjust the scaling factor to get the desired range
   const maxVelocity = 20; // Adjust this based on the typical velocity range
-  let yellowComponent = Math.min(255, Math.max(0, Math.round((velocity / maxVelocity) * 255)));
+  let colourComponent = Math.min(255, Math.max(0, Math.round((velocity / maxVelocity) * 255)));
 
   // Set the fill color (red and green are full, blue is zero)
-  ctx.fillStyle = `rgb(255, ${yellowComponent}, 0)`;
+  ctx.fillStyle = `rgb(${colourComponent}, ${colourComponent}, 0)`;
 
   ctx.beginPath();
   ctx.arc(this.x2, this.y2, 10, 0, 2 * Math.PI);
