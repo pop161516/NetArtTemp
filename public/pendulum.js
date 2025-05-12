@@ -1,6 +1,8 @@
+//Code inspiered by https://www.youtube.com/watch?v=OJSzIaRRxG8 
+
 function Pendulum(angle1, angle2, length1, length2) {
-  this.x0 = null; // Will be set later, needs context of canvas width
-  this.y0 = null; // Will be set later, needs context of canvas height
+  this.x0 = null; 
+  this.y0 = null; 
   this.angle1 = angle1;
   this.angle2 = angle2;
   this.angleV1 = 0;
