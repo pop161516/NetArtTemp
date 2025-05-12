@@ -117,8 +117,7 @@ function setup() {
     oscillator.start();
     oscillators.push({ oscillator, gainNode }); // Store both
   
-     // *** ADD THIS SECTION ***
-  canvas.addEventListener('pointerenter', () => {
+  canvas.addEventListener('touchstart', () => {
     if (audioContext.state === 'suspended') {
       audioContext.resume().then(() => {
         console.log('AudioContext resumed'); // For debugging
@@ -131,8 +130,7 @@ function setup() {
         oscillators.forEach(osc => {
           osc.gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
         });
-    }
-  });
+    }, { passive: true }); 
 
   canvas.addEventListener('pointerleave', () => {
     oscillators.forEach(osc => {
