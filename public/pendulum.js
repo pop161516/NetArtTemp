@@ -15,6 +15,7 @@ function Pendulum(angle1, angle2, length1, length2) {
   this.m2 = 1;
   this.length1 = length1;
   this.length2 = length2;
+  this.bobRadius = 10;
 }
 
 function randomSize(min, max) {
@@ -126,6 +127,6 @@ Pendulum.prototype.display = function(ctx) {
   ctx.fillStyle = `rgb(${colourComponent}, ${colourComponent}, 0)`;
 
   ctx.beginPath();
-  ctx.arc(this.x2, this.y2, 40, 0, 2 * Math.PI);
+  ctx.arc(this.x2, this.y2, this.bobRadius, 0, 2 * Math.PI);
   ctx.fill();
 };
