@@ -127,21 +127,46 @@ function setup() {
     oscillator.start();
     oscillators.push({ oscillator, gainNode }); // Store both
   
-  canvas.addEventListener('touchstart', () => {
+  anvas.addEventListener('touchstart', () => {
     if (audioContext.state === 'suspended') {
       audioContext.resume().then(() => {
-        console.log('AudioContext resumed'); // For debugging
-        // Now that the context is resumed, turn on the sound
+        console.log('AudioContext resumed (touchstart)');
         oscillators.forEach(osc => {
           osc.gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
         });
+        constantGainNode.gain.setValueAtTime(0.1, audioContext.currentTime); //start constant
       });
     } else {
+      oscillators.forEach(osc => {
+        osc.gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+      });
+      constantGainNode.gain.setValueAtTime(0.1, audioContext.currentTime); //start constant
+    }
+  }, { passive: true });
+    canvas.addEventListener('pointerenter', () => {
+    if (audioContext.state === 'suspended') {
+      audioContext.resume().then(() => {
+        console.log('AudioContext resumed (pointerenter)');
         oscillators.forEach(osc => {
           osc.gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
         });
-    } 
-  }, { passive: true }); 
+        constantGainNode.gain.setValueAtTime(0.1, audioContext.currentTime); //start constant
+      });
+    } else {
+      oscillators.forEach(osc => {
+        osc.gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+      });
+      constantGainNode.gain.setValueAtTime(0.1, audioContext.currentTime); //start constant
+    }
+  });
+
+  canvas.addEventListener('pointerleave', () => {
+    oscillators.forEach(osc => {
+      osc.gainNode.gain.setValueAtTime(0, audioContext.currentTime);
+    });
+    constantGainNode.gain.setValueAtTime(0, audioContext.currentTime); //stop constant
+  });
+
   }
 
 //------- gyro compatibility -------//

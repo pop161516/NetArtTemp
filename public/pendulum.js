@@ -17,6 +17,10 @@ function Pendulum(angle1, angle2, length1, length2) {
   this.length2 = length2;
 }
 
+function randomSize(min, max) {
+  return Math.random() * (max - min) + min;
+}
+
 Pendulum.prototype.setCanvasDimensions = function(width, height) {
   this.x0 = width / 2;
   this.y0 = height / 2;
@@ -122,6 +126,6 @@ Pendulum.prototype.display = function(ctx) {
   ctx.fillStyle = `rgb(${colourComponent}, ${colourComponent}, 0)`;
 
   ctx.beginPath();
-  ctx.arc(this.x2, this.y2, 10, 0, 2 * Math.PI);
+  ctx.arc(this.x2, this.y2, randomSize(5, velocity), 0, 2 * Math.PI);
   ctx.fill();
 };
