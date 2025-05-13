@@ -108,7 +108,7 @@ function setup() {
 
     // Create an oscillator for each pendulum
     const oscillator = audioContext.createOscillator();
-    oscillator.type = 'sawtooth';  // You can change the waveform (sine, square, sawtooth, triangle)
+    oscillator.type = 'square';  // You can change the waveform (sine, square, sawtooth, triangle)
     oscillator.frequency.setValueAtTime(440, audioContext.currentTime); // Initial frequency
     const gainNode = audioContext.createGain();
     gainNode.gain.setValueAtTime(0, audioContext.currentTime); // Start silent
@@ -117,7 +117,7 @@ function setup() {
     oscillator.start();
     oscillators.push({ oscillator, gainNode }); // Store both
   
-  canvas.addEventListener('touch', () => {
+  canvas.addEventListener('touchstart', () => {
     if (audioContext.state === 'suspended') {
       audioContext.resume().then(() => {
         console.log('AudioContext resumed'); // For debugging
