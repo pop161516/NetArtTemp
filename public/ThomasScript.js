@@ -9,6 +9,24 @@
     const audio_context = new AudioContext ()
     audio_context.suspend ()
 
+    async function init_audio () {
+
+        // wait for audio context to resume
+        await audio_context.resume ()
+
+        // then set background colour
+        div_0.style.backgroundColor = 'limegreen'
+
+        // create string with new context state
+        const msg = `audio context is ${ audio_context.state }`
+
+        // unitalicise text style
+        div_0.style.fontStyle  = 'normal'
+
+        // convert to uppercase and pass to div element
+        div_0.innerText = msg.toUpperCase ()
+    }
+
     // making an array of midi notes
     const notes = [ 62, 66, 69, 73, 74, 73, 69, 66 ]
 
