@@ -117,7 +117,7 @@ function setup() {
     oscillator.start();
     oscillators.push({ oscillator, gainNode }); // Store both
   
-  canvas.addEventListener('touchstart', () => {
+  canvas.addEventListener('touch', () => {
     if (audioContext.state === 'suspended') {
       audioContext.resume().then(() => {
         console.log('AudioContext resumed'); // For debugging
