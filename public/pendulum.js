@@ -126,6 +126,6 @@ Pendulum.prototype.display = function(ctx) {
   ctx.fillStyle = `rgb(${colourComponent}, ${colourComponent}, 0)`;
 
   ctx.beginPath();
-  ctx.arc(this.x2, this.y2, randomSize(5, 40), 0, 2 * Math.PI);
+  ctx.arc(this.x2, this.y2, 40, 0, 2 * Math.PI);
   ctx.fill();
 };
