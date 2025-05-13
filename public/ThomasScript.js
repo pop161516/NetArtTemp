@@ -5,6 +5,10 @@
     cnv_0.height = cnv_0.width * 9 / 16
     cnv_0.style.backgroundColor = 'orange'
 
+    // get and suspend audio context
+    const audio_context = new AudioContext ()
+    audio_context.suspend ()
+
     // making an array of midi notes
     const notes = [ 62, 66, 69, 73, 74, 73, 69, 66 ]
 
