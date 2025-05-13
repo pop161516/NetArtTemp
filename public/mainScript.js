@@ -132,12 +132,6 @@ function setup() {
         });
     } 
   }, { passive: true }); 
-
-  canvas.addEventListener('pointerleave', () => {
-    oscillators.forEach(osc => {
-      osc.gainNode.gain.setValueAtTime(0, audioContext.currentTime);
-    });
-  });
   }
 
 //------- gyro compatibility -------//
