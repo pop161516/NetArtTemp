@@ -127,7 +127,7 @@ function setup() {
     oscillator.start();
     oscillators.push({ oscillator, gainNode }); // Store both
   
-  anvas.addEventListener('touchstart', () => {
+  canvas.addEventListener('touchstart', () => {
     if (audioContext.state === 'suspended') {
       audioContext.resume().then(() => {
         console.log('AudioContext resumed (touchstart)');
@@ -143,29 +143,7 @@ function setup() {
       constantGainNode.gain.setValueAtTime(0.1, audioContext.currentTime); //start constant
     }
   }, { passive: true });
-    canvas.addEventListener('pointerenter', () => {
-    if (audioContext.state === 'suspended') {
-      audioContext.resume().then(() => {
-        console.log('AudioContext resumed (pointerenter)');
-        oscillators.forEach(osc => {
-          osc.gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
-        });
-        constantGainNode.gain.setValueAtTime(0.1, audioContext.currentTime); //start constant
-      });
-    } else {
-      oscillators.forEach(osc => {
-        osc.gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
-      });
-      constantGainNode.gain.setValueAtTime(0.1, audioContext.currentTime); //start constant
-    }
-  });
 
-  canvas.addEventListener('pointerleave', () => {
-    oscillators.forEach(osc => {
-      osc.gainNode.gain.setValueAtTime(0, audioContext.currentTime);
-    });
-    constantGainNode.gain.setValueAtTime(0, audioContext.currentTime); //stop constant
-  });
 
   }
 
