@@ -179,8 +179,8 @@ function draw() {
 
     // Control frequency based on pendulum's y position
     const y = pendulums[i].y2; // Y position of the second bob
-    const minFrequency = 240;  // Minimum frequency (adjust as needed)
-    const maxFrequency = 260; // Maximum frequency (adjust as needed)
+    const minFrequency = 150;  // Minimum frequency (adjust as needed)
+    const maxFrequency = 350; // Maximum frequency (adjust as needed)
     const frequency = map(y, 0, height, maxFrequency, minFrequency); //Higher y = lower freq
     oscillators[i].oscillator.frequency.setValueAtTime(frequency, audioContext.currentTime);
   
