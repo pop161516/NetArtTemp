@@ -168,7 +168,7 @@ function setup() {
 //------------- draw -------------//
 function draw() {
   requestAnimationFrame(draw);
-  ctx.fillStyle = '#000000'; 
+  ctx.fillStyle = '#FF0000'; 
   ctx.fillRect(0, 0, width, height);
 
 //draw and update each pendulum using a class
