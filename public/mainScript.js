@@ -22,18 +22,6 @@ if (window.DeviceOrientationEvent) {
       window.addEventListener('deviceorientation', handlePopUpOrientation);
     }
 
-    canvas.addEventListener('pointerenter', () => {
-        oscillators.forEach(osc => {
-            osc.gainNode.gain.setValueAtTime(0.1, audioContext.currentTime); // Turn sound on
-        });
-    });
-
-    canvas.addEventListener('pointerleave', () => {
-        oscillators.forEach(osc => {
-             osc.gainNode.gain.setValueAtTime(0, audioContext.currentTime); // Turn sound off
-        });
-    });
-
   } else {
     console.log("Device Orientation API is not supported on this device.");
   }  
@@ -52,7 +40,7 @@ const introElement = document.getElementById('interactiveElement');
     const alpha = event.alpha; 
     //forward backward
     const beta = event.beta; 
-    //
+    //spin around
     const gamma = event.gamma;
 
     if (introElement) {
@@ -106,17 +94,6 @@ function setup() {
     pendulums[i].setCanvasDimensions(width, height);
     pendulums[i].currentG = g;
 
-    // *** NEW: Second oscillator ***
-  const constantOscillator = audioContext.createOscillator();
-  constantOscillator.type = 'sawtooth';
-  constantOscillator.frequency.setValueAtTime(250, audioContext.currentTime);
-  const constantGainNode = audioContext.createGain();
-  constantGainNode.gain.setValueAtTime(0, audioContext.currentTime); // Start silent
-  constantOscillator.connect(constantGainNode);
-  constantGainNode.connect(masterGainNode);
-  constantOscillator.start();
-
-    // Sound!!
     const oscillator = audioContext.createOscillator();
     oscillator.type = 'sine';  // You can change the waveform (sine, square, sawtooth, triangle)
     oscillator.frequency.setValueAtTime(500, audioContext.currentTime); // Initial frequency
