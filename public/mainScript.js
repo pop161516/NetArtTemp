@@ -108,7 +108,7 @@ function setup() {
 
     // *** NEW: Second oscillator ***
   const constantOscillator = audioContext.createOscillator();
-  constantOscillator.type = 'sine';
+  constantOscillator.type = 'sawtooth';
   constantOscillator.frequency.setValueAtTime(250, audioContext.currentTime);
   const constantGainNode = audioContext.createGain();
   constantGainNode.gain.setValueAtTime(0, audioContext.currentTime); // Start silent
@@ -119,7 +119,7 @@ function setup() {
     // Sound!!
     const oscillator = audioContext.createOscillator();
     oscillator.type = 'sine';  // You can change the waveform (sine, square, sawtooth, triangle)
-    oscillator.frequency.setValueAtTime(250, audioContext.currentTime); // Initial frequency
+    oscillator.frequency.setValueAtTime(500, audioContext.currentTime); // Initial frequency
     const gainNode = audioContext.createGain();
     gainNode.gain.setValueAtTime(0, audioContext.currentTime); // Start silent
     oscillator.connect(gainNode);
