@@ -94,6 +94,7 @@ function setup() {
     pendulums[i].setCanvasDimensions(width, height);
     pendulums[i].currentG = g;
 
+    //sound!!
     const oscillator = audioContext.createOscillator();
     oscillator.type = 'sine';  // You can change the waveform (sine, square, sawtooth, triangle)
     oscillator.frequency.setValueAtTime(500, audioContext.currentTime); // Initial frequency
